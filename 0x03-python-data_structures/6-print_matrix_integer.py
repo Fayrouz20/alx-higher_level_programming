@@ -6,7 +6,7 @@ def print_matrix_integer(matrix=[[]]):
         for item in range(len(matrix)):
             for row in range(len(matrix[item])):
                 if row != len(matrix[item]) - 1:
-                    endspace = ''
+                    endspace = ' '
                 else:
                     endspace = ''
                 print("{:d}".format(matrix[item][row]),end=endspace)
