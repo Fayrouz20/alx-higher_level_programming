@@ -10,3 +10,19 @@ Each value should be the square of the value of the input
 Initial matrix should not be modified
 You are not allowed to import any module
 You are allowed to use regular loops, map, etc.
+##############################
+Write a function that adds all unique integers in a list (only once for each integer).
+
+Prototype: def uniq_add(my_list=[]):
+You are not allowed to import any module
+
+##########################"
+Write a function that returns a set of common elements in two sets.
+
+Prototype: def common_elements(set_1, set_2):
+You are not allowed to import any module
+###########################"
+Write a function that returns a set of all elements present in only one set.
+
+Prototype: def only_diff_elements(set_1, set_2):
+You are not allowed to import any module
