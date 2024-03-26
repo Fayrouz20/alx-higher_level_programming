@@ -1,3 +1,3 @@
--- create the database htbn_0c_ in my server.
-CREATE DATABASE IF NOT EXISTS 'hbtn_0c_0'
+-- Creates the database hbtn_0c_0 in my MySQL server.
 
+CREATE DATABASE IF NOT EXISTS `hbtn_0c_0`;
