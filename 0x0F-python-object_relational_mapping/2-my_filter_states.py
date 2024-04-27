@@ -1,28 +1,45 @@
-#!/usr/bin/python3
-"""
-This script takes in an argument and
-displays all values in the states
-where `name` matches the argument
-from the database `hbtn_0e_0_usa`.
-"""
+#!/usr/bin/env python3
 
+import sys
 import MySQLdb
-from sys import argv
 
-if __name__ == '__main__':
-    """
-    Access to the database and get the states
-    from the database.
-    """
+if __name__ == "__main__":
+    # Get the command line arguments
+    if len(sys.argv) != 5:
+        print("Usage: ./script_name <username> <password> <database> <state_name>")
+        sys.exit(1)
 
-    db = MySQLdb.connect(host="localhost", user=argv[1], port=3306,
-                         passwd=argv[2], db=argv[3])
+    # Extract arguments
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database = sys.argv[3]
+    state_name = sys.argv[4]
 
-    cur = db.cursor()
-    cur.execute("SELECT * FROM states \
-                 WHERE name LIKE BINARY '{}' \
-                 ORDER BY states.id ASC".format(argv[4]))
-    rows = cur.fetchall()
+    # Connect to the MySQL database
+    db = MySQLdb.connect(
+        host="localhost",
+        port=3306,
+        user=username,
+        passwd=password,
+        db=database
+    )
 
-    for row in rows:
+    # Create a cursor object to execute queries
+    cursor = db.cursor()
+
+    # Prepare the SQL query to fetch states matching the given name
+    query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
+    
+    # Execute the query with the provided state_name
+    cursor.execute(query, (state_name,))
+
+    # Fetch all results
+    results = cursor.fetchall()
+
+    # Display the results
+    for row in results:
         print(row)
+
+    # Close the cursor and the database connection
+    cursor.close()
+    db.close()
